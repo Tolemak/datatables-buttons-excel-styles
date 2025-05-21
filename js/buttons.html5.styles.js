@@ -19,8 +19,8 @@
 // DataTables Buttons extension when it is loaded.
 
 
-export function customize(xlsx, customExcelStyles) {
-    applyStyles(xlsx, customExcelStyles);
+export function customize(xlsx, config, customExcelStyles) {
+    applyStyles(xlsx, config, customExcelStyles);
 };
 
 
@@ -726,7 +726,7 @@ function applyStyles(xlsx, config, customExcelStyles) {
     }
 
     // Load excelStyles and also check exportOptions for backwards compatibility
-    let excelStyles = customExcelStyles
+    let excelStyles = customExcelStyles;
     if (excelStyles === undefined) {
         return;
     }
