@@ -46,8 +46,8 @@
     "jquery": ">=1.7"
   },
   "devDependencies": {
-    "datatables.net-buttons-dt": "^1.6.1",
-    "datatables.net-dt": "^1.10.20",
+    "datatables.net-buttons-dt": "^3.2.0",
+    "datatables.net-dt": "^2.1.8",
     "rexreplace": "^5.3.0",
     "uglify-js": "^3.9.3"
   }
