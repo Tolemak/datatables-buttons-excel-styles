@@ -11,55 +11,7 @@
  * Include this file after including the buttons.html5.styles.js (along with the required DataTables dependencies)
  */
 
-(function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD
-        define([
-            'jquery',
-            'datatables.net',
-            'datatables.net-buttons',
-            'datatables.net-buttons/js/buttons.html5.js',
-            'datatables-buttons-excel-styles/js/buttons.html5.styles.js',
-        ], function ($) {
-            return factory($, window, document);
-        });
-    } else if (typeof exports === 'object') {
-        // CommonJS
-        module.exports = function (root, $) {
-            if (!root) {
-                root = window;
-            }
-
-            if (!$ || !$.fn.dataTable) {
-                $ = require('datatables.net')(root, $).$;
-            }
-
-            if (!$.fn.dataTable.Buttons) {
-                require('datatables.net-buttons')(root, $);
-            }
-
-            if (!$.fn.dataTable.Buttons.excelHtml5) {
-                require('datatables.net-buttons/js/buttons.html5.js')(root, $);
-            }
-
-            if (!$.fn.dataTable.Buttons._applyExcelStyles) {
-                require('datatables-buttons-excel-styles/js/buttons.html5.styles.js')(
-                    root,
-                    $
-                );
-            }
-
-            return factory($, root, root.document);
-        };
-    } else {
-        // Browser
-        factory(jQuery, window, document);
-    }
-})(function ($, window, document, undefined) {
-    //(function ($) {
-    ('use strict');
-
-    var DataTable = $.fn.dataTable;
+export function extendExcelStylesTemplates(DataTable) {
 
     /**
      * Override the html5.styles.js applyStyles function to inject the templates into the excelStyles object
@@ -265,8 +217,8 @@
                     } else {
                         console.log(
                             "Error: Template '" +
-                                templateName +
-                                "' not found. Ignoring template."
+                            templateName +
+                            "' not found. Ignoring template."
                         );
                     }
                 }
@@ -361,7 +313,7 @@
                     },
                 },
             },
-        ]
+        ];
     };
 
     var _gen_outline = function (themeColor) {
@@ -494,4 +446,4 @@
     };
 
     return DataTable.Buttons;
-});
+};
