@@ -14,47 +14,11 @@
  * @see https://datatables.net/reference/button/excel
  */
 
-(function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD
-        define([
-            'jquery',
-            'datatables.net',
-            'datatables.net-buttons',
-            'datatables.net-buttons/js/buttons.html5.js',
-        ], function ($) {
-            return factory($, window, document);
-        });
-    } else if (typeof exports === 'object') {
-        // CommonJS
-        module.exports = function (root, $) {
-            if (!root) {
-                root = window;
-            }
-
-            if (!$ || !$.fn.dataTable) {
-                $ = require('datatables.net')(root, $).$;
-            }
-
-            if (!$.fn.dataTable.Buttons) {
-                require('datatables.net-buttons')(root, $);
-            }
-
-            if (!$.fn.dataTable.Buttons.excelHtml5) {
-                require('datatables.net-buttons/js/buttons.html5.js')(root, $);
-            }
-
-            return factory($, root, root.document);
-        };
-    } else {
-        // Browser
-        factory(jQuery, window, document);
-    }
-})(function ($, window, document, undefined) {
-    //(function ($) {
-    ('use strict');
-
-    var DataTable = $.fn.dataTable;
+export function extendExcelStyles(DataTable) {
+    // This is a placeholder function to allow the plugin to be loaded
+    // without needing to call it directly. It will be called by the
+    // DataTables Buttons extension when it is loaded.
+    
 
     /**
      * Automatically run the applyStyles function if customize isn't redefined
@@ -1903,4 +1867,4 @@
     };
 
     return DataTable.Buttons;
-});
+};
