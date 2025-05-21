@@ -723,9 +723,6 @@ function applyStyles(xlsx, config, customExcelStyles) {
     _xmlStyleDoc = xlsx.xl['styles.xml'];
 
     // load config settings for smart row references
-    // let config = DataTable.Api().buttons.exportInfo(this);
-    config.header = this.header;
-    config.footer = this.footer;
     _loadRowRefs(config, sheet);
 
     if (this.insertCells !== undefined) {
