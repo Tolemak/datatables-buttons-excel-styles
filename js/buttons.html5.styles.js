@@ -844,7 +844,7 @@ export function extendExcelStyles(DataTable) {
         }
 
         // Load excelStyles and also check exportOptions for backwards compatibility
-        var excelStyles = this.excelStyles || this.exportOptions.excelStyles;
+        var excelStyles = window.customExcelStyles ?? (this.excelStyles || this.exportOptions.excelStyles);
         if (excelStyles === undefined) {
             return;
         }
