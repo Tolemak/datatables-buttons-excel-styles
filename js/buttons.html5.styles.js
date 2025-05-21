@@ -709,7 +709,7 @@ let _createNode = function (doc, nodeName, opts) {
  *
  * @param {object} xlsx
  */
-function applyStyles(xlsx, customExcelStyles) {
+function applyStyles(xlsx, config, customExcelStyles) {
     // Load excelStyles and also check exportOptions for backwards compatibility
     // let excelStyles = this.excelStyles || this.exportOptions.excelStyles;
     // if (excelStyles === undefined) {
@@ -723,7 +723,7 @@ function applyStyles(xlsx, customExcelStyles) {
     _xmlStyleDoc = xlsx.xl['styles.xml'];
 
     // load config settings for smart row references
-    let config = DataTable.Api().buttons.exportInfo(this);
+    // let config = DataTable.Api().buttons.exportInfo(this);
     config.header = this.header;
     config.footer = this.footer;
     _loadRowRefs(config, sheet);
