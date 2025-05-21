@@ -61,23 +61,29 @@ $("#myTable").DataTable({
     dom: "Bfrtip",
     buttons: [
         {
-            extend: "excel",                    // Extend the excel button
-            excelStyles: {                      // Add an excelStyles definition
-                cells: "2",                     // to row 2
-                style: {                        // The style block
-                    font: {                     // Style the font
-                        name: "Arial",          // Font name
-                        size: "14",             // Font size
-                        color: "FFFFFF",        // Font Color
-                        b: false,               // Remove bolding from header row
-                    },
-                    fill: {                     // Style the cell fill (background)
-                        pattern: {              // Type of fill (pattern or gradient)
-                            color: "457B9D",    // Fill color
+            extend: "excel", // Extend the excel button
+            options: {
+                dataTables: {
+                    exportOptions: {
+                        excelStyles: { // Add an excelStyles definition
+                            cells: "2", // to row 2
+                            style: { // The style block
+                                font: {
+                                    name: "Arial", // Font name
+                                    size: "14", // Font size
+                                    color: "FFFFFF", // Font Color
+                                    b: false, // Remove bolding from header row
+                                },
+                                fill: {
+                                    pattern: {
+                                        color: "457B9D", // Fill color
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            },
+            }
         },
     ],
 });
@@ -95,10 +101,16 @@ $("#myTable").DataTable({
     dom: "Bfrtip",
     buttons: [
         {
-            extend: "excel",              // Extend the excel button
-            excelStyles: {                // Add an excelStyles definition
-                template: "blue_medium",  // Apply the 'blue_medium' template
-            },
+            extend: "excel",
+            options: {
+                dataTables: {
+                    exportOptions: {
+                        excelStyles: {
+                            template: "blue_medium", // Apply the 'blue_medium' template
+                        }
+                    }
+                }
+            }
         },
     ],
 });
@@ -116,26 +128,32 @@ $("#myTable").DataTable({
     dom: "Bfrtip",
     buttons: [
         {
-            extend: "excel",                    // Extend the excel button
-            excelStyles: [                      // Add an excelStyles definition
-                {                 
-                    template: "green_medium",   // Apply the "green_medium" template
-                },
-                {
-                    cells: "sh",                // Use Smart References (s) to target the header row (h)
-                    style: {                    // The style definition
-                        font: {                 // Style the font
-                            size: 14,           // Size 14
-                            b: false,           // Turn off the default bolding of the header row
-                        },
-                        fill: {                 // Style the cell fill
-                            pattern: {          // Add a pattern (default is solid)
-                                color: "1C3144" // Define the fill color
+            extend: "excel",
+            options: {
+                dataTables: {
+                    exportOptions: {
+                        excelStyles: [
+                            {
+                                template: "green_medium", // Apply the "green_medium" template
+                            },
+                            {
+                                cells: "sh", // Use Smart References (s) to target the header row (h)
+                                style: {
+                                    font: {
+                                        size: 14,
+                                        b: false,
+                                    },
+                                    fill: {
+                                        pattern: {
+                                            color: "1C3144"
+                                        }
+                                    }
+                                }
                             }
-                        }
+                        ]
                     }
                 }
-            ]           
+            }
         },
     ],
 });
@@ -151,11 +169,17 @@ $("#myTable").DataTable({
     dom: "Bfrtip",
     buttons: [
         {
-            extend: "excel",    // Extend the excel button
-            excelStyles: {      // Add an excelStyles definition
-                cells: "sh",    // Use Smart References (s) to target the header row (h)
-                index: 12,      // Apply the built-in style #12 which gives the cells a red background
-            },
+            extend: "excel",
+            options: {
+                dataTables: {
+                    exportOptions: {
+                        excelStyles: {
+                            cells: "sh",
+                            index: 12, // Apply the built-in style #12 which gives the cells a red background
+                        }
+                    }
+                }
+            }
         },
     ],
 });
@@ -177,30 +201,36 @@ $("#myTable").DataTable({
     dom: "Bfrtip",
     buttons: [
         {
-            extend: "excel",                        // Extend the excel button
-            excelStyles: {                          // Add an excelStyles definition
-                cells: "sF",                        // (s) Smart row reference, All data rows in column F
-                condition: {                        // Add this style conditionally
-                    type: 'cellIs',                 // Use the 'cellIs' condition type
-                    operator: 'between',            // Use the 'between' operator
-                    formula: [150000,200000],   // Add the two numbers to match between
-                },
-                style: {                            // The style block
-                    font: {
-                        bold: true,
-                    },
-                    fill: {
-                        pattern: {
-                            bgColor: "457B9D",      // NOTE: An excel quirk is that conditional solid fills need 
-                                                    // the bgColor set, not the fgColor as for normal fills. 
+            extend: "excel",
+            options: {
+                dataTables: {
+                    exportOptions: {
+                        excelStyles: {
+                            cells: "sF",
+                            condition: {
+                                type: 'cellIs',
+                                operator: 'between',
+                                formula: [150000,200000],
+                            },
+                            style: {
+                                font: {
+                                    bold: true,
+                                },
+                                fill: {
+                                    pattern: {
+                                        bgColor: "457B9D",
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            },
+            }
         },
     ],
 });
 ```
+
 
 ## Replace or insert cells, columns and rows
 
@@ -213,36 +243,42 @@ $("#myTable").DataTable({
     dom: "Bfrtip",
     buttons: [
         {
-            extend: "excel",                // Extend the excel button
-            insertCells: [                  // Add an insertCells config option 
-                {
-                    cells: 'sCh',               // Target the header with smart selection
-                    content: 'New column C',    // New content for the cells
-                    pushCol: true,              // pushCol causes the column to be inserted
-                },
-                {
-                    cells: 'sC1:C-0',           // Target the data
-                    content: '',                // Add empty content
-                    pushCol: true               // push the columns to the right over one
-                },
-                {
-                    cells: 's5:6',              // Target data row 5 and 6
-                    content: '',                // Add empty content
-                    pushRow: true               // push the rows down to insert the content
-                },
-                {
-                    cells: 'B3',                // Target cell B3
-                    content: 'THIS IS CELL B3', // without pushCol or pushRow defined, the cell
-                                                // is overwritten
+            extend: "excel",
+            options: {
+                dataTables: {
+                    insertCells: [
+                        {
+                            cells: 'sCh',
+                            content: 'New column C',
+                            pushCol: true,
+                        },
+                        {
+                            cells: 'sC1:C-0',
+                            content: '',
+                            pushCol: true
+                        },
+                        {
+                            cells: 's5:6',
+                            content: '',
+                            pushRow: true
+                        },
+                        {
+                            cells: 'B3',
+                            content: 'THIS IS CELL B3',
+                        }
+                    ],
+                    exportOptions: {
+                        excelStyles: {
+                            template: 'cyan_medium',
+                        }
+                    }
                 }
-            ],
-            excelStyles: {
-                template: 'cyan_medium',    // Add a template to the result
             }
         },
     ],
 });
 ```
+
 
 ## Printer defaults
 
@@ -257,43 +293,48 @@ $("#myTable").DataTable({
     dom: "Bfrtip",
     buttons: [
         {
-            extend: "excel",                // Extend the excel button
-            pageStyle: {
-                sheetPr: {
-                    pageSetUpPr: {
-                        fitToPage: 1            // Fit the printing to the page
-                    } 
-                },
-                printOptions: {
-                    horizontalCentered: true,
-                    verticalCentered: true,
-                },
-                pageSetup: {
-                    orientation: "landscape",   // Orientation
-                    paperSize: "9",             // Paper size (1 = Letter, 9 = A4)
-                    fitToWidth: "1",            // Fit to page width
-                    fitToHeight: "0",           // Fit to page height
-                },
-                pageMargins: {
-                    left: "0.2",
-                    right: "0.2",
-                    top: "0.4",
-                    bottom: "0.4",
-                    header: "0",
-                    footer: "0",
-                },
-                repeatHeading: true,    // Repeat the heading row at the top of each page
-                repeatCol: 'A:A',       // Repeat column A (for pages wider than a single printed page)
-            },
-            excelStyles: {
-                template: 'blue_gray_medium',    // Add a template style as well if you like
+            extend: "excel",
+            options: {
+                dataTables: {
+                    pageStyle: {
+                        sheetPr: {
+                            pageSetUpPr: {
+                                fitToPage: 1
+                            } 
+                        },
+                        printOptions: {
+                            horizontalCentered: true,
+                            verticalCentered: true,
+                        },
+                        pageSetup: {
+                            orientation: "landscape",
+                            paperSize: "9",
+                            fitToWidth: "1",
+                            fitToHeight: "0",
+                        },
+                        pageMargins: {
+                            left: "0.2",
+                            right: "0.2",
+                            top: "0.4",
+                            bottom: "0.4",
+                            header: "0",
+                            footer: "0",
+                        },
+                        repeatHeading: true,
+                        repeatCol: 'A:A',
+                    },
+                    exportOptions: {
+                        excelStyles: {
+                            template: 'blue_gray_medium',
+                        }
+                    }
+                }
             }
         },
     ],
 });
 ```
 
-[pageSetup options can be found here](https://c-rex.net/projects/samples/ooxml/e1/Part4/OOXML_P4_DOCX_pageSetup_topic_ID0EHZ54.html)
 
 ## Applying your Styles
 
@@ -307,8 +348,14 @@ $("#myTable").DataTable({
     buttons: [
         {
             extend: "excel",
-            excelStyles: {
-                // ... custom Excel Style Objects defined ...
+            options: {
+                dataTables: {
+                    exportOptions: {
+                        excelStyles: {
+                            // ... custom Excel Style Objects defined ...
+                        }
+                    }
+                }
             },
             customize: function(xlsx) {
                 // ... your custom code here ...
