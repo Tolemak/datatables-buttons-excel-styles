@@ -710,14 +710,6 @@ let _createNode = function (doc, nodeName, opts) {
  * @param {object} xlsx
  */
 function applyStyles(xlsx, config, customExcelStyles) {
-    // Load excelStyles and also check exportOptions for backwards compatibility
-    // let excelStyles = this.excelStyles || this.exportOptions.excelStyles;
-    // if (excelStyles === undefined) {
-    //     return;
-    // }
-    // if (!Array.isArray(excelStyles)) {
-    //     excelStyles = [excelStyles];
-    // }
 
     let sheet = xlsx.xl.worksheets['sheet1.xml'];
     _xmlStyleDoc = xlsx.xl['styles.xml'];
@@ -725,16 +717,16 @@ function applyStyles(xlsx, config, customExcelStyles) {
     // load config settings for smart row references
     _loadRowRefs(config, sheet);
 
-    if (this.insertCells !== undefined) {
-        _insertCells(this.insertCells, sheet, config);
+    if (config.insertCells !== undefined) {
+        _insertCells(config.insertCells, sheet, config);
     }
 
-    if (this.pageStyle !== undefined) {
-        _applyPageStyle(this.pageStyle, sheet, xlsx);
+    if (config.pageStyle !== undefined) {
+        _applyPageStyle(config.pageStyle, sheet, xlsx);
     }
 
     // Load excelStyles and also check exportOptions for backwards compatibility
-    let excelStyles = customExcelStyles ?? (this.excelStyles || this.exportOptions.excelStyles);
+    let excelStyles = customExcelStyles
     if (excelStyles === undefined) {
         return;
     }
