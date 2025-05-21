@@ -1427,7 +1427,7 @@ let _addXMLNode = function (
     parentNode,
     nodeHierarchy
 ) {
-    let attributeName = _getTranslatedKey(nodeHierarchy, attributeName);
+    attributeName = _getTranslatedKey(nodeHierarchy, attributeName);
     _purgeUnwantedSiblings(attributeName, parentNode, nodeHierarchy);
     attributeValue = _makeArray(attributeValue);
     let mergeWith = _doWeMerge(attributeName, nodeHierarchy);
