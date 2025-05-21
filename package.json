@@ -41,8 +41,8 @@
   },
   "homepage": "https://github.com/pjjonesnz/datatables-buttons-excel-styles#readme",
   "dependencies": {
-    "datatables.net": "^1.10.15",
-    "datatables.net-buttons": "^1.6.1",
+    "datatables.net-dt": "^2.1.8",
+    "datatables.net-buttons-dt": "^3.2.0",
     "jquery": ">=1.7"
   },
   "devDependencies": {
